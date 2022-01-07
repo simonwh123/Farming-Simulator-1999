@@ -3,13 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class timeManager : MonoBehaviour
 {
+    public GameObject sun;
+    public GameObject ambienceObject;
+    public GameObject lampLight;
+
     public TextMeshProUGUI timerText;
     public bool overMidnight;
 
-    private const int STARTINGTIME = 23;
+    private const int STARTINGTIMEFirst = 23;
+    private const int STARTINGTIMELast = 50;
 
     private int firstNumber;
     private float lastNumber;
@@ -17,15 +23,17 @@ public class timeManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        firstNumber = STARTINGTIME;
-        lastNumber = 0;
+        firstNumber = STARTINGTIMEFirst;
+        lastNumber = STARTINGTIMELast;
     }
 
     // Update is called once per frame
     void Update()
     {
+        // Increase time
         lastNumber = lastNumber + Time.deltaTime;
 
+        // Make clock work properly
         if (lastNumber > 9)
         {
             timerText.text = firstNumber + ":" + lastNumber.ToString("f0");
@@ -41,11 +49,29 @@ public class timeManager : MonoBehaviour
             firstNumber = firstNumber + 1;
         }
 
-
+        //Check if over midnight
         if (firstNumber == 24)
         {
-            overMidnight = true;
-            timerText.text = "OVER MIDNIGHT";
+            onMidnight();
+        }
+    }
+
+    public void onMidnight()
+    {
+        Camera.main.backgroundColor = Color.black;
+        RenderSettings.fogColor = Color.black;
+        overMidnight = true;
+        timerText.text = "OVER MIDNIGHT";
+        sun.SetActive(false);
+        ambienceObject.SetActive(false);
+        lampLight.SetActive(true);
+    }
+
+    public void goInside()
+    {
+        if (overMidnight)
+        {
+            SceneManager.LoadScene("SleepScene");
         }
     }
 }
