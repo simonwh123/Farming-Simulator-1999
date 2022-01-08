@@ -22,7 +22,7 @@ public class Interactor : MonoBehaviour
 
                     if (Input.GetKeyDown(KeyCode.E))
                     {
-                        hit.collider.gameObject.tag = "Untagged";
+                        //hit.collider.gameObject.tag = "Untagged";
                         hit.collider.GetComponent<Interactable>().onInteract.Invoke();
                     }
                 }

@@ -14,7 +14,7 @@ public class timeManager : MonoBehaviour
     public TextMeshProUGUI timerText;
     public bool overMidnight;
 
-    private const int STARTINGTIMEFirst = 12;
+    private const int STARTINGTIMEFirst = 23;
     private const int STARTINGTIMELast = 00;
 
     private int firstNumber;
@@ -31,7 +31,7 @@ public class timeManager : MonoBehaviour
     void Update()
     {
         // Increase time
-        lastNumber = lastNumber + Time.deltaTime;
+        lastNumber = lastNumber + Time.deltaTime * 3;
 
         // Make clock work properly
         if (lastNumber > 9)
@@ -50,7 +50,7 @@ public class timeManager : MonoBehaviour
         }
 
         //Check if over midnight
-        if (firstNumber == 24)
+        if (firstNumber >= 24)
         {
             onMidnight();
         }
