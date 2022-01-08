@@ -28,6 +28,9 @@ public class timeManager : MonoBehaviour
     {
         firstNumber = STARTINGTIMEFirst;
         lastNumber = STARTINGTIMELast;
+
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 
     // Update is called once per frame
@@ -38,7 +41,7 @@ public class timeManager : MonoBehaviour
         {
             lastNumber = lastNumber + Time.deltaTime * 5;
         }
-        if (tractor.GetComponent<MSVehicleControllerFree>().KMh > 1) // Tractor
+        if (tractor.GetComponent<MSVehicleControllerFree>().KMh > 1 && tractor.GetComponent<MSVehicleControllerFree>().isInsideTheCar == true) // Tractor
         {
             lastNumber = lastNumber + Time.deltaTime / tractor.GetComponent<MSVehicleControllerFree>().KMh * 2;
         }
