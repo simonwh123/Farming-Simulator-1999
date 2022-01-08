@@ -11,6 +11,9 @@ public class timeManager : MonoBehaviour
     public GameObject ambienceObject;
     public GameObject lampLight;
 
+    public GameObject footstepsObject;
+    public GameObject tractor;
+
     public TextMeshProUGUI timerText;
     public bool overMidnight;
 
@@ -31,7 +34,14 @@ public class timeManager : MonoBehaviour
     void Update()
     {
         // Increase time
-        lastNumber = lastNumber + Time.deltaTime * 3;
+        if (footstepsObject.GetComponent<footstepScript>().footstepSound.isPlaying == true) // Walk
+        {
+            lastNumber = lastNumber + Time.deltaTime * 5;
+        }
+        if (tractor.GetComponent<MSVehicleControllerFree>().KMh > 1) // Tractor
+        {
+            lastNumber = lastNumber + Time.deltaTime / tractor.GetComponent<MSVehicleControllerFree>().KMh * 2;
+        }
 
         // Make clock work properly
         if (lastNumber > 9)
