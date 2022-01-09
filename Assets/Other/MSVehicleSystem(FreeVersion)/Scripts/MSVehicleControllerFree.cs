@@ -350,7 +350,7 @@ public class MSVehicleControllerFree : MonoBehaviour {
 	float sensImpactRL;
 	float additionalCurrentGravity;
 	float currentBrakeValue;
-	float forceEngineBrake;
+	public float forceEngineBrake;
 
 	float sidewaysSlipMaxSkid;
 	float forwardSlipMaxSkid;
@@ -1547,7 +1547,7 @@ public class MSVehicleControllerFree : MonoBehaviour {
 	#endregion
 
 	#region CoroutineStartEndTurnOff
-	void TurnOnAndTurnOff(){
+	public void TurnOnAndTurnOff(){
 		if (youCanCall && isInsideTheCar && controls.controls.enable_startTheVehicle_Input) {
 			if ((Input.GetKeyDown (controls.controls.startTheVehicle) && !theEngineIsRunning) || (Mathf.Abs(verticalInput) > 0.5f && !theEngineIsRunning)) {
 				enableEngineSound = true;
