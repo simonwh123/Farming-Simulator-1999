@@ -8,19 +8,41 @@ public class TaskManager : MonoBehaviour
 {
     public GameObject[] taskList;
     public AudioSource taskCompleteSound;
+    public bool allTasksCompleted;
 
     private void FixedUpdate()
     {
-        //Harvest
+        // Harvest
         if (GameObject.FindGameObjectWithTag("Crop") == null)
         {
             completeTask("harvest");
         }
 
-        //Water
+        // Shovel shit
+        if (GameObject.FindGameObjectWithTag("Shit") == null)
+        {
+            completeTask("shovel");
+        }
+
+        // Water
         if (GameObject.Find("Water") != null)
         {
             completeTask("water");
+        }
+
+        // Food
+        if (GameObject.Find("CatFood") != null)
+        {
+            completeTask("food");
+        }
+
+        if (GameObject.FindGameObjectWithTag("Task") == null)
+        {
+            allTasksCompleted = true;
+        }
+        else
+        {
+            allTasksCompleted = false;
         }
     }
 

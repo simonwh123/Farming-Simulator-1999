@@ -7,6 +7,8 @@ TagManager:
   - Interactable
   - Crop
   - Enemy
+  - Shit
+  - Task
   layers:
   - Default
   - TransparentFX

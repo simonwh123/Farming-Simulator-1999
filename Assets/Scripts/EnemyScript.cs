@@ -64,6 +64,7 @@ public class EnemyScript : MonoBehaviour
 
         if (other.gameObject.name == "Tractor" && chasingPlayer == false)
         {
+            GameObject.Find("DayCount").GetComponent<dayCountScript>().day = 1;
             tractor.SetActive(false);
             deadUI.SetActive(true);
         }

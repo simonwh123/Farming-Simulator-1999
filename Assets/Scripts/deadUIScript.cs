@@ -20,4 +20,9 @@ public class deadUIScript : MonoBehaviour
     {
         Application.Quit();
     }
+
+    public void onTwitter()
+    {
+        Application.OpenURL("https://twitter.com/daddysucc5000");
+    }
 }

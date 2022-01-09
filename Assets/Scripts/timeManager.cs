@@ -13,6 +13,7 @@ public class timeManager : MonoBehaviour
 
     public GameObject footstepsObject;
     public GameObject tractor;
+    public GameObject dayCount;
 
     public TextMeshProUGUI timerText;
     public bool overMidnight;
@@ -29,6 +30,8 @@ public class timeManager : MonoBehaviour
         firstNumber = STARTINGTIMEFirst;
         lastNumber = STARTINGTIMELast;
 
+        dayCount = GameObject.Find("DayCount");
+
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
     }
@@ -39,11 +42,11 @@ public class timeManager : MonoBehaviour
         // Increase time
         if (footstepsObject.GetComponent<footstepScript>().footstepSound.isPlaying == true) // Walk
         {
-            lastNumber = lastNumber + Time.deltaTime * 5;
+            lastNumber = lastNumber + Time.deltaTime * dayCount.GetComponent<dayCountScript>().day * 5;
         }
         if (tractor.GetComponent<MSVehicleControllerFree>().KMh > 1 && tractor.GetComponent<MSVehicleControllerFree>().isInsideTheCar == true) // Tractor
         {
-            lastNumber = lastNumber + Time.deltaTime / tractor.GetComponent<MSVehicleControllerFree>().KMh * 2;
+            lastNumber = lastNumber + Time.deltaTime / tractor.GetComponent<MSVehicleControllerFree>().KMh * dayCount.GetComponent<dayCountScript>().day * 2;
         }
 
         // Make clock work properly
