@@ -27,6 +27,8 @@ public class timeManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        overMidnight = false;
+
         firstNumber = STARTINGTIMEFirst;
         lastNumber = STARTINGTIMELast;
 
@@ -39,6 +41,7 @@ public class timeManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         // Increase time
         if (footstepsObject.GetComponent<footstepScript>().footstepSound.isPlaying == true) // Walk
         {

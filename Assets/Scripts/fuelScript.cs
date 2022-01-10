@@ -41,11 +41,11 @@ public class fuelScript : MonoBehaviour
 
         if (fuel < 0)
         {
-            tractorController.currentGear = -1;
+            //tractorController.currentGear = -1;
             tractorController.handBrakeTrue = true;
-            tractorController._vehicleTorque.maxVelocityKMh = 0;
-            tractorController._vehicleTorque.speedOfGear = 0;
-            tractorController.forceEngineBrake = 100;
+            //tractorController._vehicleTorque.maxVelocityKMh = 0;
+            //tractorController._vehicleTorque.speedOfGear = 0;
+            //tractorController.forceEngineBrake = 100;
             tractorController.TurnOnAndTurnOff();
             tractorController.StartCoroutine("StartEngineCoroutine", false);
         }
@@ -53,11 +53,12 @@ public class fuelScript : MonoBehaviour
         {
             if (tractorController.isInsideTheCar == true)
             {
+                tractorController.handBrakeTrue = false;
                 fuel = fuel - fuelUsage;
             }
         }
 
-        fuelUsage = tractorController.KMh * dayCount.GetComponent<dayCountScript>().day / 80;
+        fuelUsage = tractorController.KMh / 210;
     }
 
     public void pickupFuel()
