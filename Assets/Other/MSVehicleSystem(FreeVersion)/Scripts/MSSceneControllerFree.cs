@@ -36,7 +36,7 @@ public class ControlsFree {
 	[Space(10)][Tooltip("If this variable is true, the control for this variable will be activated.")]
 	public bool enable_pause_Input = true;
 	[Tooltip("The key that must be pressed to pause the game.")]
-	public KeyCode pause = KeyCode.P;
+	public KeyCode pause = KeyCode.Escape;
 }
 
 public class MSSceneControllerFree : MonoBehaviour {

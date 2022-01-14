@@ -529,7 +529,12 @@ namespace ECM.Components
         /// </summary>
         /// <param name="pause">True == pause, false == unpause</param>
         /// <param name="restoreVelocity">Should restore saved velocity on resume?</param>
-        
+
+        private void Start()
+        {
+            
+        }
+
         public void Pause(bool pause, bool restoreVelocity = true)
         {
             if (pause)
@@ -1575,7 +1580,16 @@ namespace ECM.Components
 
             probingPosition = groundedPosition;
         }
-        
+
+
+        private void Update()
+        {
+            if (GetComponent<pauseScript>().paused == true)
+            {
+                Pause(true);
+            }
+        }
+
         /// <summary>
         /// Coroutine used to simulate a LateFixedUpdate method.
         /// </summary>

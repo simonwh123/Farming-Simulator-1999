@@ -22,7 +22,7 @@ namespace ECM.Walkthrough.OrientToGround
             // Default ECM Input as used in BaseCharacterController HandleInput method.
             // Replace this with your custom input code here...
 
-            if (Input.GetKeyDown(KeyCode.P))
+            if (Input.GetKeyDown(KeyCode.Escape))
                 pause = !pause;
 
             // Handle user input

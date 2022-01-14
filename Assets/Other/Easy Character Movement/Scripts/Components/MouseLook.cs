@@ -21,7 +21,7 @@ namespace ECM.Components
 
         [Tooltip("The keyboard key to unlock the mouse cursor.")]
         [SerializeField]
-        private KeyCode _unlockCursorKey = KeyCode.Escape;
+        private KeyCode _unlockCursorKey = KeyCode.F3;
 
         [Tooltip("How fast the cursor moves in response to mouse lateral (x-axis) movement.")]
         [SerializeField]

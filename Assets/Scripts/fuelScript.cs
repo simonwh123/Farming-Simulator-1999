@@ -22,13 +22,11 @@ public class fuelScript : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         fuelText.text = fuel.ToString("f0") + "%";
 
         tractorController = GetComponent<MSVehicleControllerFree>();
-
-        print(fuel);
 
         if (tractorController.isInsideTheCar == true)
         {
@@ -58,7 +56,7 @@ public class fuelScript : MonoBehaviour
             }
         }
 
-        fuelUsage = tractorController.KMh / 210;
+        fuelUsage = tractorController.KMh / 310;
     }
 
     public void pickupFuel()

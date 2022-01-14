@@ -14,6 +14,7 @@ public class deadUIScript : MonoBehaviour
     public void restart()
     {
         SceneManager.LoadScene("Farm");
+        GameObject.Find("DayCount").GetComponent<dayCountScript>().day = 1;
     }
 
     public void quitGame()

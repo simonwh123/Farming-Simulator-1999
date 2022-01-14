@@ -265,7 +265,7 @@ namespace ECM.Examples.ClimbingLadders
             // Toggle pause / resume.
             // By default, will restore character's velocity on resume (eg: restoreVelocityOnResume = true)
 
-            if (Input.GetKeyDown(KeyCode.P))
+            if (Input.GetKeyDown(KeyCode.Escape))
                 pause = !pause;
 
             // Handle user input
