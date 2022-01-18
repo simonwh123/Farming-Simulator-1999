@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.UI;
+using TMPro;
 
 public class Interactor : MonoBehaviour
 {
@@ -18,6 +20,14 @@ public class Interactor : MonoBehaviour
             {
                 if (hit.collider.GetComponent<Interactable>().colliding == true)
                 {
+                    if (hit.collider.name == "Tractor")
+                    {
+                        interactionText.GetComponent<TextMeshProUGUI>().text = "F";
+                    }
+                    else
+                    {
+                        interactionText.GetComponent<TextMeshProUGUI>().text = "E";
+                    }
                     interactionText.SetActive(true);
 
                     if (Input.GetKeyDown(KeyCode.E))

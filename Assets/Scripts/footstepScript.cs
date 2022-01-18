@@ -20,15 +20,17 @@ public class footstepScript : MonoBehaviour
         if (Input.GetKey("w") || Input.GetKey("a") || Input.GetKey("s") || Input.GetKey("d"))
         {
             moving = true;
+
         }
         else
         {
             moving = false;
+
         }
 
         if (moving && footstepSound.isPlaying == false && Player.GetComponent<pauseScript>().paused == false)
         {         
-            footstepSound.Play();           
+            footstepSound.Play();
         }
 
         if (!moving)

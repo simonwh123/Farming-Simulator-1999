@@ -52,16 +52,31 @@ public class EnemyScript : MonoBehaviour
     void FixedUpdate()
     {
         float distance = Vector3.Distance(transform.position, player.transform.position);
+        float distanceTractor = Vector3.Distance(transform.position, tractor.transform.position);
 
         if (gameManager.GetComponent<timeManager>().overMidnight == true)
         {
-            if (distance > 15)
+            if (GameObject.FindGameObjectWithTag("Player") != null)
             {
-                currentState = EnemyStates.Patrolling;
+                if (distance > 15)
+                {
+                    currentState = EnemyStates.Patrolling;
+                }
+                else
+                {
+                    currentState = EnemyStates.Aggro;
+                }
             }
             else
             {
-                currentState = EnemyStates.Aggro;
+                if (distanceTractor > 20)
+                {
+                    currentState = EnemyStates.Patrolling;
+                }
+                else
+                {
+                    currentState = EnemyStates.Aggro;
+                }
             }
         }
         else
@@ -126,6 +141,7 @@ public class EnemyScript : MonoBehaviour
 
         if (other.gameObject.name == "Tractor" && currentState == EnemyStates.Aggro)
         {
+            player.SetActive(false);
             tractor.SetActive(false);
             deadUI.SetActive(true);
         }

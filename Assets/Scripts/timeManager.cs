@@ -18,8 +18,8 @@ public class timeManager : MonoBehaviour
     public TextMeshProUGUI timerText;
     public bool overMidnight;
 
-    private const int STARTINGTIMEFirst = 23;
-    private const int STARTINGTIMELast = 30;
+    private const int STARTINGTIMEFirst = 12;
+    private const int STARTINGTIMELast = 00;
 
     private int firstNumber;
     private float lastNumber;
@@ -77,7 +77,10 @@ public class timeManager : MonoBehaviour
 
     public void onMidnight()
     {
-        Camera.main.backgroundColor = Color.black;
+        if (Camera.main != null)
+        {
+            Camera.main.backgroundColor = Color.black;
+        }
         RenderSettings.fogColor = Color.black;
         overMidnight = true;
         timerText.text = "OVER MIDNIGHT";

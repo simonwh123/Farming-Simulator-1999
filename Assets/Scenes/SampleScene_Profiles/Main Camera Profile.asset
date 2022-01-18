@@ -22,11 +22,11 @@ MonoBehaviour:
     defaultState: 1
   intensity:
     overrideState: 1
-    value: 0.097
+    value: 0.102
   fastMode:
     overrideState: 0
     value: 0
---- !u!114 &-1615891795852135516
+--- !u!114 &-5913279566726981038
 MonoBehaviour:
   m_ObjectHideFlags: 3
   m_CorrespondingSourceObject: {fileID: 0}
@@ -38,20 +38,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: adb84e30e02715445aeb9959894e3b4d, type: 3}
   m_Name: ColorGrading
   m_EditorClassIdentifier: 
-  active: 1
+  active: 0
   enabled:
     overrideState: 1
     value: 1
   gradingMode:
-    overrideState: 1
-    value: 1
+    overrideState: 0
+    value: 0
   externalLut:
     overrideState: 0
     value: {fileID: 0}
     defaultState: 1
   tonemapper:
-    overrideState: 1
-    value: 1
+    overrideState: 0
+    value: 0
   toneCurveToeStrength:
     overrideState: 0
     value: 0
@@ -78,56 +78,56 @@ MonoBehaviour:
     overrideState: 0
     value: 1
   temperature:
-    overrideState: 1
-    value: -27.5
+    overrideState: 0
+    value: -26.9
   tint:
-    overrideState: 1
-    value: -73.1
+    overrideState: 0
+    value: -61.7
   colorFilter:
     overrideState: 0
-    value: {r: 0, g: 1, b: 0.27710438, a: 1}
+    value: {r: 0, g: 1, b: 0.43849897, a: 1}
   hueShift:
     overrideState: 0
-    value: -10.8
+    value: 0
   saturation:
-    overrideState: 1
-    value: 100
+    overrideState: 0
+    value: -51.5
   brightness:
     overrideState: 0
-    value: 0
+    value: 63.6
   postExposure:
-    overrideState: 1
-    value: -0.62
+    overrideState: 0
+    value: 0
   contrast:
-    overrideState: 1
-    value: 100
+    overrideState: 0
+    value: -42.1
   mixerRedOutRedIn:
     overrideState: 1
     value: 200
   mixerRedOutGreenIn:
     overrideState: 1
-    value: 72
+    value: -17
   mixerRedOutBlueIn:
     overrideState: 1
-    value: -71
+    value: 0
   mixerGreenOutRedIn:
     overrideState: 1
-    value: 0
+    value: 200
   mixerGreenOutGreenIn:
     overrideState: 1
-    value: 108
+    value: 100
   mixerGreenOutBlueIn:
-    overrideState: 1
+    overrideState: 0
     value: 0
   mixerBlueOutRedIn:
     overrideState: 1
-    value: 0
+    value: 200
   mixerBlueOutGreenIn:
-    overrideState: 1
+    overrideState: 0
     value: 0
   mixerBlueOutBlueIn:
-    overrideState: 1
-    value: 125
+    overrideState: 0
+    value: 100
   lift:
     overrideState: 0
     value: {x: 1, y: 1, z: 1, w: 0}
@@ -1352,9 +1352,9 @@ MonoBehaviour:
   settings:
   - {fileID: 1324630644636032193}
   - {fileID: 4897318702951320575}
-  - {fileID: -1615891795852135516}
   - {fileID: -6772763679930191370}
   - {fileID: 9029893697058313912}
+  - {fileID: -5913279566726981038}
 --- !u!114 &1324630644636032193
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -1373,7 +1373,7 @@ MonoBehaviour:
     value: 1
   intensity:
     overrideState: 1
-    value: 2.41
+    value: 3.35
   threshold:
     overrideState: 1
     value: 0.87
@@ -1382,7 +1382,7 @@ MonoBehaviour:
     value: 0.579
   clamp:
     overrideState: 1
-    value: 65472
+    value: 65474.19
   diffusion:
     overrideState: 1
     value: 7
@@ -1423,10 +1423,10 @@ MonoBehaviour:
     value: 1
   intensity:
     overrideState: 1
-    value: 0.766
+    value: 0.135
   size:
     overrideState: 1
-    value: 0.46
+    value: 0.344
   lumContrib:
     overrideState: 1
     value: 1
@@ -1442,7 +1442,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1cb7e9e120078f43bce4f0b1be547a7, type: 3}
   m_Name: AmbientOcclusion
   m_EditorClassIdentifier: 
-  active: 0
+  active: 1
   enabled:
     overrideState: 1
     value: 1
@@ -1451,7 +1451,7 @@ MonoBehaviour:
     value: 1
   intensity:
     overrideState: 1
-    value: 0.1
+    value: 0.16
   color:
     overrideState: 1
     value: {r: 0, g: 0, b: 0, a: 1}
