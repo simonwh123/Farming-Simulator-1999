@@ -13,13 +13,18 @@ public class Interactor : MonoBehaviour
     void Update()
     {
         RaycastHit hit;
-        
-        if(Physics.Raycast(Camera.main.transform.position,Camera.main.transform.forward, out hit, 2))
+
+        if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, 2))
         {
             if (hit.collider.tag == "Interactable" && hit.collider.GetComponent<Interactable>() != null)
             {
                 if (hit.collider.GetComponent<Interactable>().colliding == true)
                 {
+                    if (hit.collider.tag != "Interactable" && hit.collider.GetComponent<Interactable>() == null)
+                    {
+                        interactionText.SetActive(false);
+                    }
+
                     if (hit.collider.name == "Tractor")
                     {
                         interactionText.GetComponent<TextMeshProUGUI>().text = "F";
@@ -34,6 +39,7 @@ public class Interactor : MonoBehaviour
                     {
                         //hit.collider.gameObject.tag = "Untagged";
                         hit.collider.GetComponent<Interactable>().onInteract.Invoke();
+                        interactionText.SetActive(false);
                     }
                 }
             }

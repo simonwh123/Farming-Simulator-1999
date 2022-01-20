@@ -80,4 +80,9 @@ public class gunScript : MonoBehaviour
     {
         ammo = ammo + 1;
     }
+
+    public void pickupGun()
+    {
+        hasGun = true;
+    }
 }
