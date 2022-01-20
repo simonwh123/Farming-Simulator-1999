@@ -9,6 +9,8 @@ public class gunScript : MonoBehaviour
     private Animation gunAnim;
     private bool canshoot;
     private float muzzleTime;
+    public bool hasGun;
+    private GameObject gunParentObject;
 
     [Header("Kickback")]
     public Transform kickGO;
@@ -21,6 +23,7 @@ public class gunScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        gunParentObject = GameObject.Find("GunParent");
         gunAnim = gunAnimObject.GetComponent<Animation>();
         canshoot = true;
     }
@@ -28,16 +31,23 @@ public class gunScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(0) && ammo > 0 && canshoot)
+        if (Input.GetMouseButtonDown(0) && ammo > 0 && canshoot && hasGun)
         {
             fireGun();
         }
-
-        print(muzzleTime);
     }
 
     private void FixedUpdate()
     {
+        if (hasGun)
+        {
+            gunParentObject.SetActive(true);
+        }
+        else
+        {
+            gunParentObject.SetActive(false);
+        }
+
         muzzleTime = muzzleTime - Time.deltaTime;
 
         if (muzzleTime > 0)
@@ -64,5 +74,10 @@ public class gunScript : MonoBehaviour
     {
         yield return new WaitForSeconds(2);
         canshoot = true;
+    }
+
+    public void pickupAmmo()
+    {
+        ammo = ammo + 1;
     }
 }
