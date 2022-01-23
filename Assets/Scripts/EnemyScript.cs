@@ -19,15 +19,18 @@ public class EnemyScript : MonoBehaviour
     public AudioSource pigSound;
 
     public bool chasingPlayer;
+    public bool dead;
 
     public GameObject gameManager;
     public GameObject deadUI;
+
 
     enum EnemyStates
     {
         Patrolling,
         Aggro,
-        Idle
+        Idle,
+        Dead
     }
 
     [SerializeField] EnemyStates currentState;
@@ -88,6 +91,9 @@ public class EnemyScript : MonoBehaviour
         // Patrolling behaviour
         if (currentState == EnemyStates.Patrolling)
         {
+            setRigidbodyState(true);
+            setColliderState(false);
+
             if (pigSound.isPlaying == false)
             {
                 pigSound.Play();
@@ -111,7 +117,10 @@ public class EnemyScript : MonoBehaviour
 
         // Aggro behaviour
         if (currentState == EnemyStates.Aggro)
-        { 
+        {
+            setRigidbodyState(true);
+            setColliderState(false);
+
             if (GameObject.FindGameObjectWithTag("Player") != null)
             {
                 chasingPlayer = true;
@@ -129,21 +138,62 @@ public class EnemyScript : MonoBehaviour
                 pigSound.Play();
             }
         }
+
+        if (currentState == EnemyStates.Dead)
+        {
+            die();
+        }
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Player" && currentState == EnemyStates.Aggro)
+        if (other.gameObject.tag == "Player" && currentState == EnemyStates.Aggro && dead == false)
         {
             player.SetActive(false);
             deadUI.SetActive(true);
         }
 
-        if (other.gameObject.name == "Tractor" && currentState == EnemyStates.Aggro)
+        if (other.gameObject.name == "Tractor" && currentState == EnemyStates.Aggro && dead == false)
         {
             player.SetActive(false);
             tractor.SetActive(false);
             deadUI.SetActive(true);
         }
+    }
+
+    public void die()
+    {
+        agent.enabled = false;
+        anim.Stop();
+        anim.enabled = false;
+        setRigidbodyState(false);
+        setColliderState(true);
+        currentState = EnemyStates.Dead;
+        dead = true;
+        pigSound.Stop();
+    }
+
+    void setRigidbodyState(bool state)
+    {
+        Rigidbody[] rigidbodies = GetComponentsInChildren<Rigidbody>();
+
+        foreach(Rigidbody rigidbody in rigidbodies)
+        {
+            rigidbody.isKinematic = state;
+        }
+
+        GetComponent<Rigidbody>().isKinematic = !state;
+    }
+
+    void setColliderState(bool state)
+    {
+        Collider[] colliders = GetComponentsInChildren<Collider>();
+
+        foreach (Collider collider in colliders)
+        {
+            collider.enabled = state;
+        }
+
+        GetComponent<Collider>().enabled = !state;
     }
 }

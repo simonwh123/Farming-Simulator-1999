@@ -47,7 +47,7 @@ public class aimScript : MonoBehaviour
         // Zoom out
         if (zooming == false && Camera.main.GetComponent<Camera>().fieldOfView < defaultFov)
         {
-            Camera.main.GetComponent<Camera>().fieldOfView += 1;
+            Camera.main.GetComponent<Camera>().fieldOfView += 2;
         }
     }
 }
