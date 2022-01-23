@@ -56,7 +56,7 @@ MonoBehaviour:
   - {fileID: 0}
   player: {fileID: 0}
   tractor: {fileID: 0}
-  animal: {fileID: 5319305012080634630}
+  animObject: {fileID: 5319305012080634630}
   anim: {fileID: 0}
   animClip: {fileID: 7400000, guid: 0b1e17f5f578faa4b9e01e781f8dc550, type: 2}
   pigSound: {fileID: 5319305012909007514}
@@ -64,6 +64,9 @@ MonoBehaviour:
   dead: 0
   gameManager: {fileID: 0}
   deadUI: {fileID: 0}
+  bloodyTexture: {fileID: 2800000, guid: 8ac24d13f2086a1458d2a2c41f490931, type: 3}
+  animalRenderer: {fileID: 0}
+  mesh: {fileID: 5319305012080634710}
   currentState: 0
 --- !u!195 &5319305012909007511
 NavMeshAgent:
@@ -1694,6 +1697,12 @@ CharacterJoint:
   m_EnablePreprocessing: 0
   m_MassScale: 1
   m_ConnectedMassScale: 1
+--- !u!1 &5319305012080634710 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100000, guid: b4187112a0850b04bbf4b5172214711f,
+    type: 3}
+  m_PrefabInstance: {fileID: 5319305012080602614}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &5319305012080634712 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 100014, guid: b4187112a0850b04bbf4b5172214711f,

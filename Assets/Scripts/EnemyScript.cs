@@ -12,7 +12,7 @@ public class EnemyScript : MonoBehaviour
     public GameObject player;
     public GameObject tractor;
 
-    public GameObject animal;
+    public GameObject animObject;
     public Animation anim;
     public AnimationClip animClip;
 
@@ -24,6 +24,9 @@ public class EnemyScript : MonoBehaviour
     public GameObject gameManager;
     public GameObject deadUI;
 
+    public Texture bloodyTexture;
+    public Renderer animalRenderer;
+    public GameObject mesh;
 
     enum EnemyStates
     {
@@ -38,10 +41,11 @@ public class EnemyScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        animalRenderer = mesh.GetComponent<Renderer>();
         currentState = EnemyStates.Idle;
         agent = GetComponent<NavMeshAgent>();
         player = GameObject.FindGameObjectWithTag("Player");
-        anim = animal.GetComponent<Animation>();
+        anim = animObject.GetComponent<Animation>();
         chasingPlayer = false;
         pigSound.pitch = Random.Range(0.8f, 1.2f);
 
@@ -57,7 +61,7 @@ public class EnemyScript : MonoBehaviour
         float distance = Vector3.Distance(transform.position, player.transform.position);
         float distanceTractor = Vector3.Distance(transform.position, tractor.transform.position);
 
-        if (gameManager.GetComponent<timeManager>().overMidnight == true)
+        if (gameManager.GetComponent<timeManager>().overMidnight == true && dead == false)
         {
             if (GameObject.FindGameObjectWithTag("Player") != null)
             {
@@ -163,6 +167,7 @@ public class EnemyScript : MonoBehaviour
 
     public void die()
     {
+        animalRenderer.material.mainTexture = bloodyTexture;
         agent.enabled = false;
         anim.Stop();
         anim.enabled = false;
