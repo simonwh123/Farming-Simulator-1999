@@ -17,6 +17,7 @@ public class EnemyScript : MonoBehaviour
     public AnimationClip animClip;
 
     public AudioSource pigSound;
+    public AudioSource hitSound;
 
     public bool chasingPlayer;
     public bool dead;
@@ -27,6 +28,7 @@ public class EnemyScript : MonoBehaviour
     public Texture bloodyTexture;
     public Renderer animalRenderer;
     public GameObject mesh;
+
 
     enum EnemyStates
     {

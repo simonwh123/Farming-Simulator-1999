@@ -88,6 +88,7 @@ public class gunScript : MonoBehaviour
             print(hit.collider.gameObject.name);
             if (hit.collider.gameObject.tag == "Enemy")
             {
+                hit.collider.GetComponent<EnemyScript>().hitSound.Play();
                 hit.collider.GetComponent<EnemyScript>().die();
                 hit.rigidbody.AddExplosionForce(500f, transform.position, 50f);
             }
