@@ -60,6 +60,7 @@ public class EnemyScript : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+
         float distance = Vector3.Distance(transform.position, player.transform.position);
         float distanceTractor = Vector3.Distance(transform.position, tractor.transform.position);
 

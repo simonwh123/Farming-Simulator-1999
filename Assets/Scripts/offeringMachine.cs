@@ -38,7 +38,7 @@ public class offeringMachine : MonoBehaviour
         inventory.Remove(offeringToSpawn);
         soundObject.GetComponent<AudioSource>().Play();
 
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(4);
         bullet.SetActive(true);
         bullet.GetComponent<Animation>().Play();
 
