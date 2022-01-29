@@ -37,13 +37,16 @@ public class offeringMachine : MonoBehaviour
         GameObject.Find(offeringToSpawn).GetComponent<Animation>().Play();
         inventory.Remove(offeringToSpawn);
         soundObject.GetComponent<AudioSource>().Play();
+        soundObject.GetComponent<AudioSource>().pitch = 1;
+        gameObject.tag = "Untagged";
 
-        yield return new WaitForSeconds(4);
+        yield return new WaitForSeconds(6);
         bullet.SetActive(true);
         bullet.GetComponent<Animation>().Play();
 
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(2);
         soundObject.GetComponent<AudioSource>().Stop();
+        gameObject.tag = "Interactable";
     }
 
     IEnumerator NoInventoryItems()
@@ -51,4 +54,5 @@ public class offeringMachine : MonoBehaviour
         yield return new WaitForSeconds(2);
         noOfferingsText.SetActive(false);
     }
+
 }

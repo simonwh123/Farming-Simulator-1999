@@ -7,28 +7,41 @@ public class fuelScript : MonoBehaviour
 {
     public float fuel;
     private float fuelUsage;
+    public static bool isInCar;
 
-    public MSVehicleControllerFree tractorController;
+    public MSVehicleControllerFree vehicleController;
 
-    public GameObject dayCount;
-
-    public TextMeshProUGUI fuelText;
+    public static TextMeshProUGUI fuelText;
 
     // Start is called before the first frame update
     void Start()
     {
         fuel = 100;
-        dayCount = GameObject.Find("DayCount");
+
+        fuelText = GameObject.Find("FuelText").GetComponent<TextMeshProUGUI>();
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        fuelText.text = fuel.ToString("f0") + "%";
 
-        tractorController = GetComponent<MSVehicleControllerFree>();
+        if (isInCar && vehicleController.KMh > 1)
+        {
+            fuelText.text = fuel.ToString("f0") + "%";
+        }
 
-        if (tractorController.isInsideTheCar == true)
+        vehicleController = GetComponent<MSVehicleControllerFree>();
+
+        if (GameObject.Find("Player") == null)
+        {
+            isInCar = true;
+        }
+        else
+        {
+            isInCar = false;
+        }
+
+        if (isInCar == true)
         {
             fuelText.enabled = true;
         }
@@ -39,24 +52,28 @@ public class fuelScript : MonoBehaviour
 
         if (fuel < 0)
         {
-            //tractorController.currentGear = -1;
-            tractorController.handBrakeTrue = true;
-            //tractorController._vehicleTorque.maxVelocityKMh = 0;
-            //tractorController._vehicleTorque.speedOfGear = 0;
-            //tractorController.forceEngineBrake = 100;
-            tractorController.TurnOnAndTurnOff();
-            tractorController.StartCoroutine("StartEngineCoroutine", false);
+            vehicleController.handBrakeTrue = true;
+            vehicleController.TurnOnAndTurnOff();
+            vehicleController.StartCoroutine("StartEngineCoroutine", false);
         }
         else
         {
-            if (tractorController.isInsideTheCar == true)
+            if (isInCar == true)
             {
-                tractorController.handBrakeTrue = false;
+                vehicleController.handBrakeTrue = false;
                 fuel = fuel - fuelUsage;
             }
         }
 
-        fuelUsage = tractorController.KMh / 310;
+        if (GameObject.Find("LadaCam") != null)
+        {
+            fuelUsage = vehicleController.KMh / 650;
+        }
+        else
+        {
+            fuelUsage = vehicleController.KMh / 310;
+        }
+
     }
 
     public void pickupFuel()

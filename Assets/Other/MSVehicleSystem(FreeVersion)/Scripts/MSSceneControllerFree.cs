@@ -125,7 +125,7 @@ public class MSSceneControllerFree : MonoBehaviour {
 	float MSbuttonHorizontal;
 	float MSbuttonVertical;
 
-	bool playerIsNull;
+	public bool playerIsNull;
 
 	Vector2 vectorDirJoystick;
 

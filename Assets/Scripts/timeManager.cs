@@ -12,8 +12,9 @@ public class timeManager : MonoBehaviour
     public GameObject lampLight;
 
     public GameObject footstepsObject;
-    public GameObject tractor;
     public GameObject dayCount;
+
+    public List<GameObject> vehicles;
 
     public TextMeshProUGUI timerText;
     public bool overMidnight;
@@ -47,9 +48,13 @@ public class timeManager : MonoBehaviour
         {
             lastNumber = lastNumber + Time.deltaTime * dayCount.GetComponent<dayCountScript>().day * 5;
         }
-        if (tractor.GetComponent<MSVehicleControllerFree>().KMh > 1 && tractor.GetComponent<MSVehicleControllerFree>().isInsideTheCar == true) // Tractor
+
+        foreach(GameObject vehicle in vehicles)  // Vehicles
         {
-            lastNumber = lastNumber + Time.deltaTime / tractor.GetComponent<MSVehicleControllerFree>().KMh * dayCount.GetComponent<dayCountScript>().day * 2;
+            if (vehicle.GetComponent<MSVehicleControllerFree>().KMh > 1 && fuelScript.isInCar == true)
+            {
+                lastNumber = lastNumber + Time.deltaTime / vehicle.GetComponent<MSVehicleControllerFree>().KMh * dayCount.GetComponent<dayCountScript>().day * 2;
+            }
         }
 
         // Make clock work properly

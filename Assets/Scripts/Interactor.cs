@@ -25,7 +25,7 @@ public class Interactor : MonoBehaviour
                         interactionText.SetActive(false);
                     }
 
-                    if (hit.collider.name == "Tractor")
+                    if (hit.collider.gameObject.layer == 9)
                     {
                         interactionText.GetComponent<TextMeshProUGUI>().text = "F";
                     }
