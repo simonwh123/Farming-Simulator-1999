@@ -65,11 +65,11 @@ public class fuelScript : MonoBehaviour
             }
         }
 
-        if (GameObject.Find("LadaCam") != null)
+        if (GameObject.Find("LadaCam") != null) // If driving lada
         {
-            fuelUsage = vehicleController.KMh / 650;
+            fuelUsage = vehicleController.KMh / 3000;
         }
-        else
+        else  // If driving tractor
         {
             fuelUsage = vehicleController.KMh / 310;
         }
