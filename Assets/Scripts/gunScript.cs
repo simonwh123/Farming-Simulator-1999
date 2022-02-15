@@ -14,6 +14,7 @@ public class gunScript : MonoBehaviour
     private GameObject gunParentObject;
     public GameObject ammoText;
 
+
     [Header("Kickback")]
     public Transform kickGO;
     public float kickUp = 0.5f;
@@ -41,7 +42,7 @@ public class gunScript : MonoBehaviour
 
     private void FixedUpdate()
     {
-
+        ammo = ammoManager.ammo;
 
         //Ammo UI
         ammoText.GetComponent<TextMeshProUGUI>().text = ammo + "/7";
@@ -75,7 +76,7 @@ public class gunScript : MonoBehaviour
         int layerMask = 1 << 7;
         kickGO.localRotation = Quaternion.Euler(kickGO.localRotation.eulerAngles - new Vector3(kickUp, Random.Range(-kickSideways, kickSideways), 0));
         gunAnim.Play();
-        ammo = ammo - 1;
+        ammoManager.ammo -= 1;
         canshoot = false;
         muzzleTime = 0.05f;
         StartCoroutine("gunCooldown");
@@ -104,7 +105,7 @@ public class gunScript : MonoBehaviour
 
     public void pickupAmmo()
     {
-        ammo = ammo + 1;
+        ammoManager.ammo += 1;
     }
 
     public void pickupGun()

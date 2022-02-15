@@ -9,9 +9,17 @@ public class TaskManager : MonoBehaviour
     public GameObject[] taskList;
     public AudioSource taskCompleteSound;
     public bool allTasksCompleted;
-
+    public bool cheatMode;
     private void FixedUpdate()
     {
+        if (cheatMode && Input.GetKeyDown("t"))
+        {
+            completeTask("harvest");
+            completeTask("shovel");
+            completeTask("water");
+            completeTask("food");
+        }
+
         // Harvest
         if (GameObject.FindGameObjectWithTag("Crop") == null)
         {

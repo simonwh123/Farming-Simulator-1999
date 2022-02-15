@@ -10,6 +10,7 @@ public class timeManager : MonoBehaviour
     public GameObject sun;
     public GameObject ambienceObject;
     public GameObject lampLight;
+    public GameObject midnightSound;
 
     public GameObject footstepsObject;
     public GameObject dayCount;
@@ -42,7 +43,6 @@ public class timeManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
         // Increase time
         if (footstepsObject.GetComponent<footstepScript>().footstepSound.isPlaying == true) // Walk
         {
@@ -92,6 +92,10 @@ public class timeManager : MonoBehaviour
         sun.SetActive(false);
         ambienceObject.SetActive(false);
         lampLight.SetActive(true);
+        if (GetComponent<TaskManager>().allTasksCompleted == false)
+        {
+            midnightSound.SetActive(true);
+        }
     }
 
     public void goInside()

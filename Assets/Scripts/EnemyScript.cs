@@ -11,6 +11,7 @@ public class EnemyScript : MonoBehaviour
 
     public GameObject player;
     public GameObject tractor;
+    public GameObject lada;
 
     public GameObject animObject;
     public Animation anim;
@@ -63,8 +64,9 @@ public class EnemyScript : MonoBehaviour
 
         float distance = Vector3.Distance(transform.position, player.transform.position);
         float distanceTractor = Vector3.Distance(transform.position, tractor.transform.position);
+        float distanceLada = Vector3.Distance(transform.position, lada.transform.position);
 
-        if (gameManager.GetComponent<timeManager>().overMidnight == true && dead == false)
+        if (gameManager.GetComponent<timeManager>().overMidnight == true && dead == false && gameManager.GetComponent<TaskManager>().allTasksCompleted == false)
         {
             if (GameObject.FindGameObjectWithTag("Player") != null)
             {
@@ -79,13 +81,28 @@ public class EnemyScript : MonoBehaviour
             }
             else
             {
-                if (distanceTractor > 20)
+                if (GameObject.Find("TractorCam"))
                 {
-                    currentState = EnemyStates.Patrolling;
+                    if (distanceTractor > 25)
+                    {
+                        currentState = EnemyStates.Patrolling;
+                    }
+                    else
+                    {
+                        currentState = EnemyStates.Aggro;
+                    }
                 }
-                else
+
+                if (GameObject.Find("LadaCam"))
                 {
-                    currentState = EnemyStates.Aggro;
+                    if (distanceLada > 25)
+                    {
+                        currentState = EnemyStates.Patrolling;
+                    }
+                    else
+                    {
+                        currentState = EnemyStates.Aggro;
+                    }
                 }
             }
         }
@@ -135,8 +152,16 @@ public class EnemyScript : MonoBehaviour
             }
             else
             {
-                chasingPlayer = false;
-                agent.destination = tractor.transform.position;
+                if (GameObject.Find("TractorCam"))
+                {
+                    chasingPlayer = false;
+                    agent.destination = tractor.transform.position;
+                }
+                if (GameObject.Find("LadaCam"))
+                {
+                    chasingPlayer = false;
+                    agent.destination = lada.transform.position;
+                }
             }
             anim.clip = animClip;
             anim.Play();
@@ -164,6 +189,13 @@ public class EnemyScript : MonoBehaviour
         {
             player.SetActive(false);
             tractor.SetActive(false);
+            deadUI.SetActive(true);
+        }
+
+        if (other.gameObject.name == "LadaBody" && currentState == EnemyStates.Aggro && dead == false)
+        {
+            player.SetActive(false);
+            lada.SetActive(false);
             deadUI.SetActive(true);
         }
     }
