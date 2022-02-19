@@ -19,7 +19,7 @@ public class paperScript : MonoBehaviour
     {
         examiningPaper = !examiningPaper;
 
-        if (examiningPaper && GetComponent<Interactable>().colliding == true)
+        if (examiningPaper)
         {
             paperUI.SetActive(true);
         }

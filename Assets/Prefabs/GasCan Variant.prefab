@@ -4914,8 +4914,8 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 1.2837696
-  m_Center: {x: 0.00007760525, y: 0.7318051, z: -0.00078833103}
+  m_Radius: 0.5862036
+  m_Center: {x: 0.00007760525, y: 0.20473647, z: -0.0072259903}
 --- !u!65 &1285064728
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5004,5 +5004,3 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  colliding: 0
-  interactText: {fileID: 0}

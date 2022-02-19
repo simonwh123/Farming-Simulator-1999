@@ -30,6 +30,7 @@ public class pigScript : MonoBehaviour
     public Texture bloodyTexture;
     public Renderer animalRenderer;
     public GameObject mesh;
+    public GameObject blood;
 
     enum EnemyStates
     {
@@ -190,20 +191,20 @@ public class pigScript : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Player" && currentState == EnemyStates.Aggro && dead == false)
+        if (other.gameObject.tag == "Player" && currentState == EnemyStates.Aggro && dead == false && chasingPlayer)
         {
             player.SetActive(false);
             deadUI.SetActive(true);
         }
 
-        if (other.gameObject.name == "Tractor" && currentState == EnemyStates.Aggro && dead == false)
+        if (other.gameObject.name == "Tractor" && currentState == EnemyStates.Aggro && dead == false && chasingPlayer == false)
         {
             player.SetActive(false);
             tractor.SetActive(false);
             deadUI.SetActive(true);
         }
 
-        if (other.gameObject.name == "LadaBody" && currentState == EnemyStates.Aggro && dead == false)
+        if (other.gameObject.name == "LadaBody" && currentState == EnemyStates.Aggro && dead == false && chasingPlayer == false)
         {
             player.SetActive(false);
             lada.SetActive(false);
@@ -222,6 +223,8 @@ public class pigScript : MonoBehaviour
         currentState = EnemyStates.Dead;
         dead = true;
         pigSound.Stop();
+        blood.SetActive(true);
+        blood.transform.SetParent(null);
     }
 
     public void setRigidbodyState(bool state)
