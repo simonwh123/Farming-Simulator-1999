@@ -20,7 +20,7 @@ public class timeManager : MonoBehaviour
     public TextMeshProUGUI timerText;
     public bool overMidnight;
 
-    public const int STARTINGTIMEFirst = 12;
+    public const int STARTINGTIMEFirst = 23;
     private const int STARTINGTIMELast = 00;
 
     private int firstNumber;
@@ -92,9 +92,13 @@ public class timeManager : MonoBehaviour
         sun.SetActive(false);
         ambienceObject.SetActive(false);
         lampLight.SetActive(true);
-        if (GetComponent<TaskManager>().allTasksCompleted == false)
+        if (GetComponent<TaskManager>().allTasksCompleted == false && pigManager.allPigsAreDead == false)
         {
             midnightSound.SetActive(true);
+        }
+        else
+        {
+            midnightSound.SetActive(false);
         }
     }
 

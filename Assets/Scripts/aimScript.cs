@@ -25,8 +25,8 @@ public class aimScript : MonoBehaviour
         }
         else
         {
-            zooming = false;
             crosshair.SetActive(false);
+            zooming = false;
         }
     }
 

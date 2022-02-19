@@ -68,7 +68,7 @@ MonoBehaviour:
   gameManager: {fileID: 0}
   deadUI: {fileID: 0}
   bloodyTexture: {fileID: 2800000, guid: 8ac24d13f2086a1458d2a2c41f490931, type: 3}
-  animalRenderer: {fileID: 0}
+  animalRenderer: {fileID: 5319305012094297686}
   mesh: {fileID: 5319305012080634710}
   currentState: 0
 --- !u!195 &5319305012909007511
@@ -1966,3 +1966,9 @@ CharacterJoint:
   m_EnablePreprocessing: 0
   m_MassScale: 1
   m_ConnectedMassScale: 1
+--- !u!137 &5319305012094297686 stripped
+SkinnedMeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 13700000, guid: b4187112a0850b04bbf4b5172214711f,
+    type: 3}
+  m_PrefabInstance: {fileID: 5319305012080602614}
+  m_PrefabAsset: {fileID: 0}

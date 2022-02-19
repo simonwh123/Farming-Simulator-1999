@@ -11,6 +11,7 @@ public class gunScript : MonoBehaviour
     private bool canshoot;
     private float muzzleTime;
     public bool hasGun;
+    public bool gunIsEquipped;
     private GameObject gunParentObject;
     public GameObject ammoText;
 
@@ -34,7 +35,7 @@ public class gunScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(0) && ammo > 0 && canshoot && hasGun)
+        if (Input.GetMouseButtonDown(0) && ammo > 0 && canshoot && hasGun && gunIsEquipped)
         {
             fireGun();
         }
@@ -49,14 +50,31 @@ public class gunScript : MonoBehaviour
 
         if (hasGun)
         {
-            gunParentObject.SetActive(true);
-            ammoText.SetActive(true);
+
+            if (gunIsEquipped)
+            {
+                ammoText.SetActive(true);
+                gunParentObject.SetActive(true);
+            }
+            else
+            {
+                ammoText.SetActive(false);
+                gunParentObject.SetActive(false);
+            }
+
+            if (Input.GetAxisRaw("Mouse ScrollWheel") > 0) //wheel goes up
+            {
+                gunIsEquipped = true;
+            }
+            else if (Input.GetAxisRaw("Mouse ScrollWheel") < 0) //wheel goes down
+            {
+                gunIsEquipped = false;
+            }
 
         }
         else
         {
             gunParentObject.SetActive(false);
-            ammoText.SetActive(false);
         }
 
         muzzleTime = muzzleTime - Time.deltaTime;
@@ -89,8 +107,9 @@ public class gunScript : MonoBehaviour
             print(hit.collider.gameObject.name);
             if (hit.collider.gameObject.tag == "Enemy")
             {
-                hit.collider.GetComponent<EnemyScript>().hitSound.Play();
-                hit.collider.GetComponent<EnemyScript>().die();
+                pigManager.pigsAlive -= 1;
+                hit.collider.GetComponent<pigScript>().hitSound.Play();
+                hit.collider.GetComponent<pigScript>().die();
                 hit.rigidbody.AddExplosionForce(500f, transform.position, 50f);
             }
 
@@ -99,7 +118,7 @@ public class gunScript : MonoBehaviour
 
     IEnumerator gunCooldown()
     {
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(1);
         canshoot = true;
     }
 
@@ -110,6 +129,7 @@ public class gunScript : MonoBehaviour
 
     public void pickupGun()
     {
+        gunIsEquipped = true;
         hasGun = true;
     }
 }
