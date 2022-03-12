@@ -20,7 +20,7 @@ public class timeManager : MonoBehaviour
     public TextMeshProUGUI timerText;
     public bool overMidnight;
 
-    public const int STARTINGTIMEFirst = 23;
+    public const int STARTINGTIMEFirst = 12;
     private const int STARTINGTIMELast = 00;
 
     private int firstNumber;

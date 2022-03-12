@@ -118,13 +118,16 @@ public class gunScript : MonoBehaviour
 
     IEnumerator gunCooldown()
     {
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(1.5f);
         canshoot = true;
     }
 
     public void pickupAmmo()
     {
-        ammoManager.ammo += 1;
+        if (ammoManager.ammo < 8)
+        {
+            ammoManager.ammo += 1;
+        }
     }
 
     public void pickupGun()

@@ -4,7 +4,10 @@ using UnityEngine;
 
 public class wheelSlot : MonoBehaviour
 {
-    public GameObject wheel;
+    [SerializeField]
+    private GameObject wheel;
+    [SerializeField]
+    private AudioSource wheelSound;
 
     public void placeWheel()
     {
@@ -13,6 +16,11 @@ public class wheelSlot : MonoBehaviour
             wheel.SetActive(true);
             wheelManager.wheelInventory -= 1;
             wheelManager.wheelsOnCar += 1;
+            gameObject.tag = "Untagged";
+            GetComponent<Interactable>().enabled = false;
+            GetComponent<SphereCollider>().enabled = false;
+            GetComponent<BoxCollider>().enabled = false;
+            wheelSound.Play();
         }
     }
 }
