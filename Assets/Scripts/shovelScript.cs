@@ -5,7 +5,7 @@ using UnityEngine;
 public class shovelScript : MonoBehaviour
 {
     public GameObject[] shits;
-    public static bool hasShovel;
+    public static bool hasShovel = false;
 
     public void pickupShovel()
     {
@@ -14,6 +14,7 @@ public class shovelScript : MonoBehaviour
             hasShovel = true;
             shit.gameObject.tag = ("Interactable");
             shit.GetComponent<Interactable>().enabled = true;
+            shit.GetComponent<SphereCollider>().enabled = true;
             shit.GetComponentInChildren<ParticleSystem>().Play();
         }
     }

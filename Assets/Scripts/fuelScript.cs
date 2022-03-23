@@ -11,14 +11,13 @@ public class fuelScript : MonoBehaviour
 
     public MSVehicleControllerFree vehicleController;
 
-    public static TextMeshProUGUI fuelText;
+    [SerializeField]
+    private TextMeshProUGUI fuelText;
 
     // Start is called before the first frame update
     void Start()
     {
         fuel = 100;
-
-        fuelText = GameObject.Find("FuelText").GetComponent<TextMeshProUGUI>();
     }
 
     // Update is called once per frame

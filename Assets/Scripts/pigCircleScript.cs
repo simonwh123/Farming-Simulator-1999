@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering.PostProcessing;
 
 public class pigCircleScript : MonoBehaviour
 {
@@ -10,6 +11,9 @@ public class pigCircleScript : MonoBehaviour
     private bool ending;
     public int pigsInCircle;
     private const float speedToFadeIn = 10;
+    public PostProcessProfile ppProfile;
+    public ChromaticAberration chromaticAberration;
+    public Bloom bloom;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -29,8 +33,6 @@ public class pigCircleScript : MonoBehaviour
 
     private void FixedUpdate()
     {
-        print("pig in circle: " + pigsInCircle);
-
         if (pigsInCircle == pigManager.getPigCount.Length && ending == false)
         {
             StartCoroutine("startRitual");
@@ -39,6 +41,11 @@ public class pigCircleScript : MonoBehaviour
 
         if (ending == true && increaseVolume)
         {
+            ppProfile.TryGetSettings(out chromaticAberration);
+            ppProfile.TryGetSettings(out bloom);
+            chromaticAberration.intensity.value += Time.deltaTime / speedToFadeIn;
+            bloom.intensity.value += Time.deltaTime / speedToFadeIn;
+
             if (endingSound.volume < 1)
             {
                 endingSound.volume += Time.deltaTime / speedToFadeIn;
@@ -48,7 +55,6 @@ public class pigCircleScript : MonoBehaviour
 
     IEnumerator startRitual()
     {
-        print("ending");
         ending = true;
         endingSound.Play();
         yield return new WaitForSeconds(5);
